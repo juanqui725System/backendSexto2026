@@ -10,6 +10,7 @@ use App\Router;
 
 $route=new Router();
 
-$route->add('GET','/users','UserController@getAll');
+$route->add('GET','/','UserController@getAll');
+$route->add('GET','/users','UserController@getAll'); 
 
 $route->run();
