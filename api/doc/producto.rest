@@ -1,0 +1,15 @@
+### Consulta de productos
+GET http://www.ventasmalue.com/productos
+
+### Modificar Productos
+PUT http://www.ventasmalue.com/productos/1
+
+{
+    "id":1,
+    "codBarras":"750105521001",
+    "descripcion":"Arroz Integral 2kg",
+    "stock":85,
+    "precio_unitario":15,
+    "creado_por":"nn",
+    "fecha_registro":"2026-06-12"
+}
