@@ -83,3 +83,5 @@ class ProductoController
         echo json_encode($producto);
     }
 }
+
+

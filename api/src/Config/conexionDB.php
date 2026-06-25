@@ -19,10 +19,10 @@ class ConexionPDO
         return self::$cnn;
     }
     //funcion que ejecute una consulta
-    public static function query(string $sql, array $param = []): array
+    public static function query(string $sql, array $param=[]): array
     {
         try {
-            $stmt = self::connect()->prepare($sql);
+            $stmt=self::connect()->prepare($sql);
             $stmt->execute($param);
             return $stmt->fetchAll(); //["ok" => $sql];
         } catch (Exception $e) {

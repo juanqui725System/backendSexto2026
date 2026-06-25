@@ -47,5 +47,6 @@ class Productos
         $sql = "INSERT productos ($stringCampos) VALUES ($valores)";
         //$result = ConexionPDO::execute($sql, $valores, true);
         return $sql; //$result;
+
     }
 }
