@@ -3,13 +3,25 @@ GET http://www.ventasmalue.com/productos
 
 ### Modificar Productos
 PUT http://www.ventasmalue.com/productos/1
+Content-Type: application/json
 
 {
-    "id":1,
     "codBarras":"750105521001",
-    "descripcion":"Arroz Integral 2kg",
+    "descripcion":"Arroz Integral 3kg",
     "stock":85,
     "precio_unitario":15,
-    "creado_por":"nn",
+    "creado_por":2,
+    "fecha_registro":"2026-06-12"
+}
+### Adicionar Producto
+POST http://www.ventasmalue.com/productos
+Content-Type: application/json
+
+{
+    "codBarras":"750105521001",
+    "descripcion":"Arroz Integral 3kg",
+    "stock":85,
+    "precio_unitario":15,
+    "creado_por":2,
     "fecha_registro":"2026-06-12"
 }

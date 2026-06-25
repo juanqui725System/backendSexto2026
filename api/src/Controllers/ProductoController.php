@@ -8,8 +8,9 @@ class ProductoController
         echo json_encode($producto);
     }
     //Actualizar Producto
-    public function update($id)
+    public function actualizar($id)
     {
+
         $jsonData = file_get_contents('php://input');
         //die($jsonData);
         $data = json_decode($jsonData, true);
@@ -23,15 +24,7 @@ class ProductoController
             return;
         }
         //"codBarras":"750105521001",
-        if (!isset($data['codBarras']) || trim($data['codBarras']) == "") {
-            echo json_encode(
-                [
-                    "status" => "Error",
-                    "message" => "El campo Codigo de Barras es obligatorio",
-                ]
-            );
-            return;
-        }
+       
         // "descripcion":"Arroz Integral 2kg",
         if (!isset($data['descripcion']) || trim($data['descripcion']) == "") {
             echo json_encode(
@@ -63,22 +56,30 @@ class ProductoController
             return;
         }
         $producto = Productos::update($id, $data);
+        if ($producto) {
+            echo json_encode([
+                "estado" => true,
+                "message" => "Producto actualizado correctamente",
+            ]);
+            return;
+        }
         echo json_encode($producto);
     }
-
-
-
-
-
-
-
-
     //Adicionar Producto
-    // public function add()
-    // {
-    //     $jsonData=file_get_contents('php://input');
-    //     die($jsonData);
-    //     $producto=Productos::update();
-    //     echo json_encode($producto);   
-    // }
+    public function add()
+    {
+        $jsonData = file_get_contents('php://input');
+        $data = json_decode($jsonData, true);
+        //validacion
+        $producto = Productos::add($data);
+        if ($producto) {
+            echo json_encode([
+                "estado" => true,
+                "message" => "Producto adicionado correctamente",
+            ]);
+            return;
+        }
+
+        echo json_encode($producto);
+    }
 }

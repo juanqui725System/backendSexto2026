@@ -19,14 +19,29 @@ class ConexionPDO
         return self::$cnn;
     }
     //funcion que ejecute una consulta
-    public static function query(string $sql, array $param=[]): array
+    public static function query(string $sql, array $param = []): array
     {
         try {
-            $stmt=self::connect()->prepare($sql);
+            $stmt = self::connect()->prepare($sql);
             $stmt->execute($param);
             return $stmt->fetchAll(); //["ok" => $sql];
         } catch (Exception $e) {
             return ["error" => $e->getMessage()];
+        }
+    }
+    // funcion para ejecutar transaccion update o add
+    public static function execute(string $sql, array $param = [],bool $id)
+    {
+        try {
+            $db = self::connect();
+            $stmt = $db->prepare($sql);
+            $res = $stmt->execute($param);
+            if ($id == true) {
+                return $db->lastInsertId();
+            }
+            return $res;
+        } catch (Exception $e) {
+            die("Existe error al procesar datos" . $e->getMessage());
         }
     }
 }

@@ -15,8 +15,8 @@ $route->add('GET','/','UserController@getAll');
 $route->add('GET','/users','UserController@getAll'); 
 //direccion de productos
 $route->add('GET','/productos','ProductoController@getAll'); 
+$route->add('PUT','/productos/{id}','ProductoController@actualizar'); 
 $route->add('POST','/productos','ProductoController@add'); 
-$route->add('PUT','/productos/{id}','ProductoController@update'); 
 
 
 

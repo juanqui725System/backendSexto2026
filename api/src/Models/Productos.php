@@ -14,21 +14,38 @@ class Productos
         if (isset($data['id'])) {
             unset($data['id']);
         }
-        $campos=[];
-        $valores=[];
+        $campos = [];
+        $valores = [];
         //construir datos
-        foreach($data as $columna=>$valor)
-            {
-                $campos[]="$columna=:$columna";
-                $valores[":$columna"]=$valor;
+        foreach ($data as $columna => $valor) {
+            $campos[] = "$columna=:$columna";
+            $valores[":$columna"] = $valor;
+        }
 
-            }
-        $stringCampos=implode(",",$campos);
+        $stringCampos = implode(",", $campos);
+
         //preparamos la consulta
-        $sql="UPDATE productos SET $stringCampos WHERE id=:id";
-        $valores[':id']=$id;
-        //$result=ConexionPDO::();
-        //$sql = "SELECT * FROM productos";
-        return $sql; //ConexionPDO::query($sql);
+        $sql = "UPDATE productos SET $stringCampos WHERE id=:id";
+        $valores[':id'] = $id;
+        //print_r($valores);
+        $result = ConexionPDO::execute($sql, $valores, false);
+        return $result;
+    }
+    public static function add($data)
+    {
+        $campos = [];
+        $valores = [];
+        //construir datos
+        foreach ($data as $columna => $valor) {
+            $campos[] = "$columna=:$columna";
+            $valores[":$columna"] = $valor;
+        }
+
+        $stringCampos = implode(",", $campos);
+        die($stringCampos);
+        //preparamos la consulta
+        $sql = "INSERT productos ($stringCampos) VALUES ($valores)";
+        //$result = ConexionPDO::execute($sql, $valores, true);
+        return $sql; //$result;
     }
 }
