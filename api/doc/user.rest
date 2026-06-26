@@ -1,2 +1,2 @@
 ### Consulta de usuario
-GET http://www.sexto2026.com/users
+GET http://www.ventasmalue.com/users

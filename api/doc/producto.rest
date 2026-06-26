@@ -18,8 +18,8 @@ POST http://www.ventasmalue.com/productos
 Content-Type: application/json
 
 {
-    "codBarras":"750105521001",
-    "descripcion":"Arroz Integral 3kg",
+    "codBarras":"750105531022",
+    "descripcion":"prueba 3kg",
     "stock":85,
     "precio_unitario":15,
     "creado_por":2,

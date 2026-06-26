@@ -33,20 +33,22 @@ class Productos
     }
     public static function add($data)
     {
+        $columnas = [];
         $campos = [];
         $valores = [];
         //construir datos
         foreach ($data as $columna => $valor) {
-            $campos[] = "$columna=:$columna";
+            $columnas[] = $columna;
+            $campos[] = ":$columna";
             $valores[":$columna"] = $valor;
         }
 
+        $stringColumnas = implode(",", $columnas);
         $stringCampos = implode(",", $campos);
-        die($stringCampos);
         //preparamos la consulta
-        $sql = "INSERT productos ($stringCampos) VALUES ($valores)";
-        //$result = ConexionPDO::execute($sql, $valores, true);
-        return $sql; //$result;
+        $sql = "INSERT INTO productos ($stringColumnas) VALUES ($stringCampos)";
+        $result = ConexionPDO::execute($sql, $valores, true);
+        return $result;
 
     }
 }
